@@ -27,61 +27,97 @@
       </div>
     </nav>
       <main class="row">
-        <table>
-          <h2>Basic Informtion</h2>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Address Line 1</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip Code</th>
-            <th>Work Phone</th>
-            <th>Mobile Phone</th>
-            <th>Radio Number</th>
-            <th>Station</th>
-          </tr>
-          <tr>
-            <td>Kathryn</td>
-            <td>Pryde</td>
-            <td>Female</td>
-            <td>1123 Xavier School Drive</td>
-            <td>Watkinsville</td>
-            <td>GA</td>
-            <td>30677</td>
-            <td>707-555-1234</td>
-            <td>707-555-2345</td>
-            <td>A-1</td>
-            <td>All</td>
-          </tr>
-          <tr>
-            <td>Piotr</td>
-            <td>Rasputin</td>
-            <td>Male</td>
-            <td>A31 Mother Russia Road</td>
-            <td>Seattle</td>
-            <td>WA</td>
-            <td>98133</td>
-            <td></td>
-            <td>206-555-9876</td>
-            <td>841</td>
-            <td>8</td>
-          <tr>
-          <tr>
-            <td>Warren</td>
-            <td>Worthington III</td>
-            <td>Male</td>
-            <td>1140 Experiment Station Rd</td>
-            <td>Watkinsville</td>
-            <td>GA</td>
-            <td></td>
-            <td>706-555-3945</td>
-            <td></td>
-            <td>122</td>
-            <td>1</td>
-          </tr>
-        </table>
+
+        <form action="" method="post">
+          <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
+          <h2>Add Members</h2>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-12">
+                        <label for="inputfirstName">First Name</label>
+                        <input type="string" class="form-control" id="inputfirstName" placeholder="firstName">
+                        </div>
+                      </div>
+                        <div class="form-row">
+                      <div class="form-group col-md-12">
+                        <label for="inputlastName">Last Name</label>
+                        <input type="text" class="form-control" id="inputlastName" placeholder="lastName">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-3">
+                        <label for="inputdob">DOB</label>
+                        <input type="date" class="form-control" id="inputdob" placeholder="dob">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputgender">Gender</label>
+                        <input type="string" class="form-control" id="inputgender" placeholder="M/F" >
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputradioNumber">Radio Number</label>
+                        <input type="string" class="form-control" id="inputradioNumber" placeholder="radioNumber">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputstationNumber">Station Number</label>
+                        <input type="number" class="form-control" id="stationNumber" placeholder="stationNumber">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputemail">Email ID</label>
+                        <input type="string" class="form-control" id="email" placeholder="email">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputposition">Position</label>
+                        <input type="string" class="form-control" id="position" placeholder="position">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputphoneNumber">Phone Number</label>
+                        <input type="number" class="form-control" id="phoneNumber" placeholder="phoneNumber">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputaddress">Address</label>
+                        <input type="string" class="form-control" id="address" placeholder="address">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputstartDate">Start Date</label>
+                        <input type="date" class="form-control" id="startDate" placeholder="mm-dd-yyyy">
+                      </div>
+                      <div class="form-group col-md-3">
+                        <label for="inputisActive">Active Check</label>
+                        <input type="boolean" class="form-control" id="isActive" placeholder="isActive">
+                      </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Members</button>
+                  </form>
+
+
+        <form action="" method="post">
+<!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
+          <h2>Add Certification</h2>
+
+                    <div class="form-row">
+                      <div class="form-group col-md-12">
+                        <label for="inputcertificationName">Certification Name</label>
+                        <input type="string" class="form-control" id="inputcertificationName" placeholder="certificationName">
+                        </div>
+                      <div class="form-group col-md-12">
+                        <label for="inputcertificationAgency">Certification Agency</label>
+                        <input type="text" class="form-control" id="inputcertificationAgency" placeholder="certificationAgency">
+                      </div>
+                      <div class="form-group col-md-12">
+                        <label for="inputexpiryPeriod">Expiry Period</label>
+                        <input type="number" class="form-control" id="inputexpiryPeriod" placeholder="expiryPeriod">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Certification</button>
+          </form>
+
+
+
+
+
+
+
       </main>
 
       <footer class="row">
