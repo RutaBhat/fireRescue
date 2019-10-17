@@ -24,15 +24,39 @@
           <a class="nav-item nav-link" href="dataEntry.html">Edit Console</a>
           <a class="nav-item nav-link" href="reports.html">Reports</a>
           <a class="nav-item nav-link" href="test.html">test</a>
-          <a class="nav-item nav-link" href="certification.html">Certification</a>
         </div>
       </div>
     </nav>
       <main class="row">
-        <div class="container">
-          <img src="img/fire.jpg" alt="fireimage" height="500">
-          <div>
 
+
+      <div class="container">
+          <div class="row">
+            <div id="mainContent" class="col-md">
+              <div id="certificationRecordsApp">
+
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th>certificationID</th>
+              <th>certificationName</th>
+              <th>certificationAgency</th>
+              <th>expiryPeriod</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="p in certificates">
+              <td>{{ p.certificationID }}</td>
+              <td>{{ p.certificationName }}</td>
+              <td>{{ p.certificationAgency }}</td>
+              <td>{{ p.expiryPeriod }}</td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+        </div>
+        </div>
+        </div>
 
 
       </main>
@@ -41,7 +65,9 @@
           <p>Oconee County Fire Rescue (OCFR) is a volunteer organization in Oconee County, GA.</p>
       </footer>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="js/display.app.js"></script>
 
 </body>
 </html>
