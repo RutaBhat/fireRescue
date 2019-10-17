@@ -9,17 +9,16 @@ $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 $stmt = $db->prepare(
-  'INSERT INTO Patient
-    (patientGuid, firstName, lastName, dob, sexAtBirth)
-  VALUES (?, ?, ?, ?, ?)'
+  'INSERT INTO certification
+    (certificationID, certificationName, certificationAgency, expiryPeriod)
+  VALUES (?, ?, ?, ?)'
 );
 
 $stmt->execute([
   $guid,
-  $_POST['firstName'],
-  $_POST['lastName'],
-  $_POST['dob'],
-  $_POST['sexAtBirth']
+  $_POST['certificationName'],
+  $_POST['certificationAgency'],
+  $_POST['expiryPeriod']
 ]);
 
 // Step 4: Output
