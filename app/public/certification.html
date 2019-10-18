@@ -74,6 +74,7 @@
               <th>certificationName</th>
               <th>certificationAgency</th>
               <th>expiryPeriod</th>
+              <th> Action </th>
             </tr>
           </thead>
           <tbody>
@@ -82,9 +83,13 @@
               <td>{{ p.certificationName }}</td>
               <td>{{ p.certificationAgency }}</td>
               <td>{{ p.expiryPeriod }}</td>
+              <td> <div class="col-sm-10">
+                <button @click="deleteRecord(p)" class="btn btn-primary">Delete</button>
+              </div> </td>
             </tr>
           </tbody>
         </table>
+
         </div>
 
         <div id="certificationEditApp">
@@ -128,6 +133,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="js/display.app.js"></script>
 <script src="js/certificationEdit.app.js"></script>
+
 
 </body>
 </html>

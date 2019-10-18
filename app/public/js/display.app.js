@@ -35,6 +35,18 @@ var certificationRecordsApp = new Vue({
   },
   handleRowClick(certificates) {
     certificationEditApp.certificates = certificates;
+  },
+  deleteRecord(p) {
+    fetch('api/records/delete.php', {
+      method: 'POST',
+      body: JSON.stringify(p),
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    })
+    .then( response => response.json() )
+    .then( json => {certificationRecordsApp.certificates = json})
+
   }
 },// end methods
 created() {
