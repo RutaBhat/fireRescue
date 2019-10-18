@@ -46,6 +46,9 @@ var memberRecordsApp = new Vue({
       isActive: ''
 
     }
+  },
+  handleRowClick(members) {
+    memberEditApp.members = members;
   }
 },// end methods
 created() {
