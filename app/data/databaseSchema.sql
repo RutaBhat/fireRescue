@@ -1,8 +1,9 @@
 create database finalproject;
 use finalproject;
 
+drop table member;
 create table member (
-memberID int Primary Key not null auto_increment,
+memberID varchar(64) Primary Key not null ,
     firstName varchar(64) Not Null,
     lastName varchar(64) Not null,
     dob date default NULL,
@@ -19,15 +20,18 @@ memberID int Primary Key not null auto_increment,
 
 select * from member;
 
-insert into member (firstName,lastName,dob,gender,radioNumber,stationNumber,email,position,phoneNumber,address,startDate,isActive)
-Values ('Amit','Jha', '1988-02-08','M','FF-12',1, 'amit@gmail.com','Chief','812-360-4663','Bloomigton','2010-10-01',True);
+insert into member (memberID,firstName,lastName,dob,gender,radioNumber,stationNumber,email,position,phoneNumber,address,startDate,isActive)
+Values ('fasdvsa','Amit','Jha', '1988-02-08','M','FF-12',1, 'amit@gmail.com','Chief','812-360-4663','Bloomigton','2010-10-01',True);
 
+drop table certification;
 create table certification (
-certificationID Int primary key auto_increment,
+certificationID varchar(64) primary key,
     certificationName varchar(64),
     certificationAgency varchar(64),
     expiryPeriod Integer default null
 );
+
+
 
 insert into  certification (certificationName,certificationAgency,expiryPeriod)
 values ('CPR', 'American Heart Association',2),
@@ -35,7 +39,7 @@ values ('CPR', 'American Heart Association',2),
 
 select * from certification;
 
-
+drop table memberCertify;
 create table memberCertify (
 enrollmentID int primary key auto_increment ,
     memberID int,
