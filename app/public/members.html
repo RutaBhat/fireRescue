@@ -127,6 +127,7 @@
 
 
 
+
                   <div class="form-group row">
                     <div class="col-sm-10">
                       <button type="submit" class="btn btn-primary">Create Member Record</button>
@@ -151,6 +152,7 @@
               <th>dob</th>
               <th>gender</th>
               <th>radioNumber</th>
+              <th>StationNumber</th>
               <th>email</th>
               <th>position</th>
               <th>phoneNumber</th>
@@ -160,7 +162,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="p in members" 
+            <tr v-for="p in members" @click="handleRowClick(p)"
             v-if="filter.gender=='' || p.gender==filter.gender">
               <td>{{ p.memberID }}</td>
               <td>{{ p.firstName }}</td>
@@ -168,6 +170,7 @@
               <td>{{ p.dob }}</td>
               <td>{{ p.gender }}</td>
               <td>{{ p.radioNumber }}</td>
+              <td>{{ p.stationNumber }}</td>
               <td>{{ p.email }}</td>
               <td>{{ p.position }}</td>
               <td>{{ p.phoneNumber }}</td>
@@ -178,6 +181,74 @@
           </tbody>
         </table>
         </div>
+
+        <div id="memberEditApp">
+          <noscript>This page REQUIRES Javascript</noscript>
+          <form @submit.prevent="handleSubmit()">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="First Name" v-model="members.firstName" >
+              </div>
+
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Last Name" v-model="members.lastName" >
+              </div>
+
+              <div class="form-group col-md-6">
+                <input type="date" class="form-control" placeholder="2001-12-13" v-model="members.dob" >
+              </div>
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="M/F" v-model="members.gender" >
+            </div>
+
+
+
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="radioNumber" v-model="members.radioNumber" >
+           </div>
+
+
+            <div class="form-group col-md-6">
+              <input type="Integer" class="form-control" placeholder="stationNumber" v-model="members.stationNumber" >
+            </div>
+
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="email" v-model="members.email" >
+            </div>
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="position" v-model="members.position" >
+            </div>
+
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="phoneNumber" v-model="members.phoneNumber" >
+            </div>
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="address" v-model="members.address" >
+            </div>
+
+            <div class="form-group col-md-6">
+              <input type="date" class="form-control" placeholder="startDate" v-model="members.startDate" >
+            </div>
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="isActive" v-model="members.isActive" >
+            </div>
+
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Edit Certification</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
         </div>
         </div>
         </div>
@@ -193,6 +264,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
 <script src="js/displayMembers.app.js"></script>
+<script src="js/membersEdit.app.js"></script>
 
 </body>
 </html>
