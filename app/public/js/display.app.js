@@ -32,6 +32,9 @@ var certificationRecordsApp = new Vue({
       certificationAgency: '',
       expiryPeriod: ''
     }
+  },
+  handleRowClick(certificates) {
+    certificationEditApp.certificates = certificates;
   }
 },// end methods
 created() {

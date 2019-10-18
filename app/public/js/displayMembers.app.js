@@ -2,7 +2,11 @@ var memberRecordsApp = new Vue({
   el: '#memberRecordsApp',
   data: {
     members: [],
-    recordmember: {}
+    recordmember: {},
+    filter: {
+      gender: '',
+      isActive:''
+    }
   },
   methods: {
     fetchMembers() {

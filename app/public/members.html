@@ -135,6 +135,13 @@
                 </form>
 
 
+                <div class="filter">
+                  <select v-model="filter.gender">
+                    <option value="">(all)</option>
+                    <option>M</option>
+                    <option>F</option>
+                  </select>
+                </div>
         <table class="table table-sm table-hover">
           <thead>
             <tr>
@@ -149,11 +156,12 @@
               <th>phoneNumber</th>
               <th>address</th>
               <th>startDate</th>
-              <th>position</th>
+              <th>Active</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="p in members">
+            <tr v-for="p in members" 
+            v-if="filter.gender=='' || p.gender==filter.gender">
               <td>{{ p.memberID }}</td>
               <td>{{ p.firstName }}</td>
               <td>{{ p.lastName }}</td>

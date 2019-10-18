@@ -70,14 +70,14 @@
         <table class="table table-sm table-hover">
           <thead>
             <tr>
-              <th>certificationID</th>
+              <th>certification ID</th>
               <th>certificationName</th>
               <th>certificationAgency</th>
               <th>expiryPeriod</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="p in certificates">
+            <tr v-for="p in certificates" @click="handleRowClick(p)">
               <td>{{ p.certificationID }}</td>
               <td>{{ p.certificationName }}</td>
               <td>{{ p.certificationAgency }}</td>
@@ -86,6 +86,33 @@
           </tbody>
         </table>
         </div>
+
+        <div id="certificationEditApp">
+          <noscript>This page REQUIRES Javascript</noscript>
+          <form @submit.prevent="handleSubmit()">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Certification Name" v-model="certificates.certificationName" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Certification Agency" v-model="certificates.certificationAgency" >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-4">
+                <input type="Integer" class="form-control" placeholder="2001-12-13" v-model="certificates.expiryPeriod" >
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Edit Certification</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
         </div>
         </div>
         </div>
@@ -100,6 +127,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="js/display.app.js"></script>
+<script src="js/certificationEdit.app.js"></script>
 
 </body>
 </html>
