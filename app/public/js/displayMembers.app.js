@@ -49,6 +49,18 @@ var memberRecordsApp = new Vue({
   },
   handleRowClick(members) {
     memberEditApp.members = members;
+  },
+  deleteRecord(p) {
+    fetch('api/recordMembers/delete.php', {
+      method: 'POST',
+      body: JSON.stringify(p),
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    })
+    .then( response => response.json() )
+    .then( json => {memberRecordsApp.members = json})
+
   }
 },// end methods
 created() {
