@@ -45,7 +45,7 @@ enrollmentID int primary key auto_increment ,
     memberID int,
     certificationID int,
     certificationIsActive boolean not null,
-    caertificationStartDate date default null,
+    certificationStartDate date default null,
     certificationEndDate date default null,
     constraint memberCertify_fk1 foreign key(memberID) references member(memberID),
     constraint memberCertify_fk2 foreign key(certificationID) references certification(certificationID)
