@@ -39,6 +39,8 @@
                 <h3> Add a new Certificate </h3>
 
                 <form @submit.prevent="handleSubmit">
+
+
                   <div class="form-group row">
                     <label for="inputcertificationName" class="col-sm-2 col-form-label">Certification Name</label>
                     <div class="col-md-10">
@@ -73,7 +75,6 @@
         <table class="table table-sm table-hover">
           <thead class="thead-dark">
             <tr>
-              <th>Certification ID</th>
               <th>Certification Name</th>
               <th>Certification Agency</th>
               <th>Expiry Period</th>
@@ -82,7 +83,6 @@
           </thead>
           <tbody>
             <tr v-for="p in certificates" @click="handleRowClick(p)">
-              <td>{{ p.certificationID }}</td>
               <td>{{ p.certificationName }}</td>
               <td>{{ p.certificationAgency }}</td>
               <td>{{ p.expiryPeriod }}</td>

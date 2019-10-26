@@ -127,7 +127,6 @@
         <table class="table table-sm table-hover table-responsive">
           <thead class="thead-dark">
             <tr>
-              <th>Member ID</th>
               <th>Name</th>
               <th>DOB</th>
               <th>Gender</th>
@@ -145,7 +144,6 @@
           <tbody>
             <tr v-for="p in members" @click="handleRowClick(p)"
             v-if="filter.gender=='' || p.gender==filter.gender">
-              <td>{{ p.memberID }}</td>
               <td>{{ p.firstName }} {{ p.lastName }}</td>
               <td>{{ p.dob }}</td>
               <td>{{ p.gender }}</td>

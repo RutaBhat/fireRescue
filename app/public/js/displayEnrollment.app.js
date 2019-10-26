@@ -2,14 +2,26 @@ var enrollmentRecordsApp = new Vue({
   el: '#enrollmentRecordsApp',
   data: {
     enrollments: [],
-    recordenrollment: {}
+    recordenrollment: {},
+    members: [],
+    certificates: []
   },
   methods: {
+    fetchCertificates() {
+      fetch('api/records/')
+      .then(response => response.json())
+      .then(json => { enrollmentRecordsApp.certificates = json })
+    }, // end methods
     fetchEnrollments() {
       fetch('api/recordEnroll/index.php')
       .then(response => response.json())
       .then(json => { enrollmentRecordsApp.enrollments = json })
     }, // end methods
+    fetchMembers() {
+      fetch('api/recordMembers/')
+      .then(response => response.json())
+      .then(json => { enrollmentRecordsApp.members = json })
+    },
   handleSubmit(event) {
     fetch('api/recordEnroll/post.php', {
       method: 'POST',
@@ -54,5 +66,7 @@ var enrollmentRecordsApp = new Vue({
 created() {
   this.handleReset();
   this.fetchEnrollments();
+  this.fetchCertificates();
+  this.fetchMembers();
 }
 });
