@@ -11,11 +11,12 @@ $db = DbConnection::getConnection();
 //   );
 //   $stmt->execute([$_GET['guid']]);
 // } else {
-  $stmt = $db->prepare('SELECT m.firstName, m.lastName,m.dob, c.certificationName,c.certificationAgency, mc.certificationIsActive,mc.certificationStartDate,mc.certificationEndDate
+$stmt = $db->prepare('SELECT m.firstName, m.lastName,m.radioNumber,m.stationNumber,m.dob,m.gender, c.certificationName,c.certificationID,c.certificationAgency, mc.certificationIsActive,mc.certificationStartDate,mc.certificationEndDate
 FROM memberCertify mc , member m, certification c
 WHERE mc.certificationID = c.certificationID
-AND mc.memberID= m.memberID');
-  $stmt->execute();
+AND mc.memberID= m.memberID
+and mc.certificationIsActive=0');
+$stmt->execute();
 // }
 
 $patients = $stmt->fetchAll();
