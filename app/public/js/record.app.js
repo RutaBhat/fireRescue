@@ -1,3 +1,4 @@
+
 var patientRecordsApp = new Vue({
   el: '#patientRecordsApp',
   data: {
