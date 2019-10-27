@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+  <title>Members</title>
+  <link rel="stylesheet" href="css/site.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+  <!-- /* Bootstrap documentation nav Bar */ -->
+  <div class="container-fluid" >
+      <header class="row" id="headerbar">
+        <img src="img/logo.jpg" alt="logo" />
+          <h1>Oconee County Fire Rescue</h1>
+      </header>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">OCFR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="members.html">Members</a>
+          <a class="nav-item nav-link" href="certification.html">Certification</a>
+          <a class="nav-item nav-link" href="reports.html">Reports</a>
+
+        </div>
+      </div>
+    </nav>
+      <main class="row">
+
+
+      <div class="container">
+        <h3> Create a new Member </h3>
+          <div class="row">
+            <div id="mainContent" class="col-md">
+              <div id="memberRecordsApp">
+
+                <form @submit.prevent="handleSubmit">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <label for="inputfirstName" >First Name</label>
+                      <input type="text" class="form-control" id="inputfirstName" placeholder="First Name" v-model="recordmember.firstName">
+                    </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputlastName" >Last Name</label>
+                      <input type="text" class="form-control" id="inputlastName" placeholder="Last Name" v-model="recordmember.lastName">
+                    </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="inputdob">Date of Birth</label>
+                      <input type="date" class="form-control" id="inputdob" placeholder="2001-12-13" v-model="recordmember.dob">
+                    </div>
+
+
+                  <div class="form-group col-md-4">
+                    <label for="inputgender" >Gender</label>
+                      <input type="text" class="form-control" id="inputgender" placeholder="M/F" v-model="recordmember.gender">
+                    </div>
+
+                    <div class="form-group col-md-4">
+                      <label for="inputemail">Email ID</label>
+                        <input type="text" class="form-control" id="inputemail" placeholder="abc@gmail.com" v-model="recordmember.email">
+                      </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="inputradioNumber">Radio Number</label>
+                          <input type="text" class="form-control" id="inputradioNumber" placeholder="Certification Agency" v-model="recordmember.radioNumber">
+                        </div>
+
+
+                    <div class="form-group col-md-4">
+                        <label for="inputstationNumber" >Station Number</label>
+                          <input type="Integer" class="form-control" id="inputstationNumber" placeholder="1234" v-model="recordmember.stationNumber">
+                        </div>
+
+
+
+                    <div class="form-group col-md-4">
+                        <label for="inputposition" >position</label>
+                          <input type="text" class="form-control" id="inputposition" placeholder="Marshall" v-model="recordmember.position">
+                        </div>
+
+                    <div class="form-group col-md-12">
+                      <label for="inputaddress" >Address</label>
+                        <input type="text" class="form-control" id="inputaddress" placeholder="3000 Fountain Park" v-model="recordmember.address">
+                    </div>
+
+
+                  <div class="form-group col-md-4">
+                    <label for="inputphoneNumber" >phoneNumber</label>
+                      <input type="text" class="form-control" id="inputphoneNumber" placeholder="812-123-4664" v-model="recordmember.phoneNumber">
+                  </div>
+
+
+                  <div class="form-group col-md-4">
+                    <label for="inputstartDate" >Start Date</label>
+                      <input type="date" class="form-control" id="inputstartDate" placeholder="2001-12-13" v-model="recordmember.startDate">
+                  </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="inputisActive" >Active?</label>
+                      <input type="text" class="form-control" id="inputisActive" placeholder="Yes/No" v-model="recordmember.isActive">
+                    </div>
+
+
+                </div>
+
+
+
+
+
+                  <div class="form-group row">
+                    <div class="col-sm-10">
+                      <button type="submit" class="btn btn-success">Create Member Record</button>
+                    </div>
+                  </div>
+                </form>
+
+
+                <div class="filter">
+                  <select v-model="filter.gender">
+                    <option value="">(all)</option>
+                    <option>M</option>
+                    <option>F</option>
+                  </select>
+                </div>
+        <table class="table table-sm table-hover table-responsive">
+          <thead class="thead-dark">
+            <tr>
+              <th>Member ID</th>
+              <th>Name</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>Radio Number</th>
+              <th>Station Number</th>
+              <th>Email</th>
+              <!-- <th>Position</th> -->
+              <!-- <th>Phone No</th>
+              <th>Address</th> -->
+              <th>Start Date</th>
+              <th>Active</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="p in members" @click="handleRowClick(p)"
+            v-if="filter.gender=='' || p.gender==filter.gender">
+              <td>{{ p.memberID }}</td>
+              <td>{{ p.firstName }} {{ p.lastName }}</td>
+              <td>{{ p.dob }}</td>
+              <td>{{ p.gender }}</td>
+              <td>{{ p.radioNumber }}</td>
+              <td>{{ p.stationNumber }}</td>
+              <td>{{ p.email }}</td>
+              <td>{{ p.position }}</td>
+              <!-- <td>{{ p.phoneNumber }}</td> -->
+              <!-- <td>{{ p.address }}</td>
+              <td>{{ p.startDate }}</td> -->
+              <td>{{ p.isActive }}</td>
+              <td><div class="col-sm-10">
+                <button @click="deleteRecord(p)" class="btn btn-danger">Delete</button>
+              </div></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <div id="memberEditApp">
+          <noscript>This page REQUIRES Javascript</noscript>
+          <form @submit.prevent="handleSubmit()">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="First Name" v-model="members.firstName" >
+              </div>
+
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Last Name" v-model="members.lastName" >
+              </div>
+
+              <div class="form-group col-md-6">
+                <input type="date" class="form-control" placeholder="2001-12-13" v-model="members.dob" >
+              </div>
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="M/F" v-model="members.gender" >
+            </div>
+
+
+
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control" placeholder="radioNumber" v-model="members.radioNumber" >
+           </div>
+
+
+            <div class="form-group col-md-6">
+              <input type="Integer" class="form-control" placeholder="stationNumber" v-model="members.stationNumber" >
+            </div>
+
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="email" v-model="members.email" >
+            </div>
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="position" v-model="members.position" >
+            </div>
+
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="phoneNumber" v-model="members.phoneNumber" >
+            </div>
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="address" v-model="members.address" >
+            </div>
+
+            <div class="form-group col-md-6">
+              <input type="date" class="form-control" placeholder="startDate" v-model="members.startDate" >
+            </div>
+
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" placeholder="isActive" v-model="members.isActive" >
+            </div>
+
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Edit Certification</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        </div>
+        </div>
+        </div>
+
+
+      </main>
+
+      <footer class="row">
+          <p>Oconee County Fire Rescue (OCFR) is a volunteer organization in Oconee County, GA.</p>
+      </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+<script src="js/displayMembers.app.js"></script>
+<script src="js/membersEdit.app.js"></script>
+
+</body>
+</html>

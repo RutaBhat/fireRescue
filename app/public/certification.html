@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+  <title>Certification</title>
+  <link rel="stylesheet" href="css/site.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+  <!-- /* Bootstrap documentation nav Bar */ -->
+  <div class="container-fluid" >
+      <header class="row" id="headerbar">
+        <img src="img/logo.jpg" alt="logo" />
+          <h1>Oconee County Fire Rescue</h1>
+      </header>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">OCFR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="members.html">Members</a>
+          <a class="nav-item nav-link" href="certification.html">Certification</a>
+          <a class="nav-item nav-link" href="enrollment.html">Enroll</a>
+          <a class="nav-item nav-link" href="reports.html">Reports</a>
+        </div>
+      </div>
+    </nav>
+      <main class="row">
+
+
+      <div class="container">
+          <div class="row">
+            <div id="mainContent" class="col-md">
+              <div id="certificationRecordsApp">
+                <h3> Add a new Certificate </h3>
+
+                <form @submit.prevent="handleSubmit">
+
+
+                  <div class="form-group row">
+                    <label for="inputcertificationName" class="col-sm-2 col-form-label">Certification Name</label>
+                    <div class="col-md-10">
+                      <input type="text" class="form-control" id="inputFirstName" placeholder="Certification Name" v-model="recordcertificate.certificationName">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="inputCertificationAgency" class="col-sm-2 col-form-label">Certification Agency</label>
+                    <div class="col-md-10">
+                      <input type="text" class="form-control" id="inputCertificationAgency" placeholder="Certification Agency" v-model="recordcertificate.certificationAgency">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="inputExpiryPeriod" class="col-sm-2 col-form-label">Expiry Period</label>
+                    <div class="col-md-3">
+                      <input type="Integer" class="form-control" id="inputExpiryPeriod" placeholder="No of years to expire" v-model="recordcertificate.expiryPeriod">
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group row">
+                    <div class="col-md-10">
+                      <button type="submit" class="btn btn-success">Create Certificate Record</button>
+                    </div>
+                  </div>
+                </form>
+
+
+        <table class="table table-sm table-hover" id="taskTable">
+          <thead class="thead-dark">
+            <tr>
+              <th>Certification Name</th>
+              <th>Certification Agency</th>
+              <th>Expiry Period</th>
+              <th> Action </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="p in certificates" @click="handleRowClick(p)">
+              <td>{{ p.certificationName }}</td>
+              <td>{{ p.certificationAgency }}</td>
+              <td>{{ p.expiryPeriod }}</td>
+              <td> <div class="col-sm-10">
+                <button @click="deleteRecord(p)" class="btn btn-danger">Delete</button>
+              </div> </td>
+            </tr>
+          </tbody>
+        </table>
+
+        </div>
+
+        <div id="certificationEditApp">
+          <noscript>This page REQUIRES Javascript</noscript>
+          <form @submit.prevent="handleSubmit()">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Certification Name" v-model="certificates.certificationName" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Certification Agency" v-model="certificates.certificationAgency" >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-4">
+                <input type="Integer" class="form-control" placeholder="2001-12-13" v-model="certificates.expiryPeriod" >
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Edit Certification</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        </div>
+        </div>
+        </div>
+
+
+      </main>
+
+      <footer class="row">
+          <p>Oconee County Fire Rescue (OCFR) is a volunteer organization in Oconee County, GA.</p>
+      </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="js/display.app.js"></script>
+<script src="js/certificationEdit.app.js"></script>
+<script src="js/tablesort.min.js" > </script>
+<script>
+new Tablesort(document.getElementById('taskTable'));
+</script>
+
+</body>
+</html>

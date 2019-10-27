@@ -1,51 +1,49 @@
-var memberRecordsApp = new Vue({
-  el: '#memberRecordsApp',
+
+var patientRecordsApp = new Vue({
+  el: '#patientRecordsApp',
   data: {
     patients: [],
-    recordPatient: {}
+    recordPatient: {},
+    filter: {
+      sab: ''
+    }
   },
   methods: {
-    fetchMembers() {
+    fetchPatients() {
       fetch('api/records/')
       .then(response => response.json())
-      .then(json => { memberRecordsApp.members = json })
+      .then(json => { patientRecordsApp.patients = json })
     },
     handleSubmit(event) {
-      fetch('api/records/post.php',{
-          method: 'POST'
-          body: JSON.stringify(this.recordMember),
-          headerL {
-            "Content-Type": "application/json; charset=utf-8"
-          }
+      fetch('api/records/post.php', {
+        method: 'POST',
+        body: JSON.stringify(this.recordPatient),
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        }
       })
-
-      // fetch(url, {
-      //   method: 'post',
-      //   data: this.recordPatient
-      // })
-      // .then( ... )
-      this.members.push( this.recordMember );
+      .then( response => response.json() )
+      .then( json => {patientRecordsApp.patients.push( json[0] )})
+      .catch( err => {
+        console.error('RECORD POST ERROR:');
+        console.error(err);
+      });
       this.handleReset();
     },
     handleReset() {
-      this.recordMember = {
-        id:'',
+      this.recordPatient = {
         firstName: '',
         lastName: '',
-        gender: '',
-        address: '',
-        city: '',
-        state: '',
-        zipCode:'',
-        workPhone: '',
-        mobilePhone: '',
-        radioNumber: '',
-        station:''
+        dob: '',
+        sexAtBirth: ''
       }
     },
+    handleRowClick(patient) {
+      patientTriageApp.patient = patient;
+    }
   }, // end methods
   created() {
     this.handleReset();
-    this.fetchMembers();
+    this.fetchPatients();
   }
 });

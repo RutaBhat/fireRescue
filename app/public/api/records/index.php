@@ -4,15 +4,23 @@
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-$stmt = $db->prepare(
-  'SELECT *
-  FROM Members m'
-);
-$stmt->execute();
-$records = $stmt->fetchAll();
+
+if (isset($_GET['guid'])) {
+ $stmt = $db->prepare(
+  'SELECT * FROM certification
+  WHERE certificationID = ?'
+ );
+$stmt->execute([$_GET['guid']]);
+} else {
+  $stmt = $db->prepare('SELECT * FROM certification');
+  $stmt->execute();
+ }
+
+$patients = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
-$json = json_encode($records, JSON_PRETTY_PRINT);
+$json = json_encode($patients, JSON_PRETTY_PRINT);
+
 
 // Step 4: Output
 header('Content-Type: application/json');
