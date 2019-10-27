@@ -6,14 +6,14 @@ $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 $stmt = $db->prepare(
-  'DELETE from member
-    Where memberID = ?');
+  'DELETE from memberCertify
+    Where enrollmentID = ?');
 
 $stmt->execute([
-  $_POST['memberID']
+  $_POST['enrollmentID']
 ]);
 
-$guid=$_POST['memberID'];
+$guid=$_POST['enrollmentID'];
 // Step 4: Output
 header('HTTP/1.1 303 See Other');
-header('Location: ../recordMembers/?guid='.$guid);
+header('Location: ../recordEnroll/?guid='.$guid);

@@ -41,11 +41,11 @@ select * from certification;
 
 drop table memberCertify;
 create table memberCertify (
-enrollmentID int primary key auto_increment ,
-    memberID int,
-    certificationID int,
+enrollmentID varchar(64) primary key ,
+    memberID varchar(64),
+    certificationID varchar(64),
     certificationIsActive boolean not null,
-    caertificationStartDate date default null,
+    certificationStartDate date default null,
     certificationEndDate date default null,
     constraint memberCertify_fk1 foreign key(memberID) references member(memberID),
     constraint memberCertify_fk2 foreign key(certificationID) references certification(certificationID)

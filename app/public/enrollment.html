@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+  <title>Enrollment</title>
+  <link rel="stylesheet" href="css/site.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+  <!-- /* Bootstrap documentation nav Bar */ -->
+  <div class="container-fluid" >
+      <header class="row" id="headerbar">
+        <img src="img/logo.jpg" alt="logo" />
+          <h1>Oconee County Fire Rescue</h1>
+      </header>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">OCFR</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="members.html">Members</a>
+          <a class="nav-item nav-link" href="certification.html">Certification</a>
+          <a class="nav-item nav-link" href="enrollment.html">Enroll</a>
+          <a class="nav-item nav-link" href="reports.html">Reports</a>
+        </div>
+      </div>
+    </nav>
+      <main class="row">
+
+
+      <div class="container">
+          <div class="row">
+            <div id="mainContent" class="col-md">
+              <div id="enrollmentRecordsApp">
+                <h3> Enroll Members and Certificates  </h3>
+
+                <form @submit.prevent="handleSubmit">
+
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Certification Name</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01" v-model="recordenrollment.certificationID" required>
+                      <option selected>Choose...</option>
+                      <option v-for="r in certificates" :value="r.certificationID">{{r.certificationName}}</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect02">Member Name</label>
+                  </div>
+                  <select class="custom-select" id="inputGroupSelect02" v-model="recordenrollment.memberID" required>
+                    <option selected>Choose...</option>
+                    <option v-for="r in members" :value="r.memberID">{{r.firstName}} {{r.lastName}} {{r.dob}}</option>
+                  </select>
+                </div>
+
+
+
+                  <!-- <div class="form-group row">
+                    <label for="inputcertificationIsActive" class="col-sm-2 col-form-label">Certification IsActive ?</label>
+                    <div class="col-md-3">
+                      <input type="Integer" class="form-control" id="inputcertificationIsActive" placeholder="Yes/No" v-model="recordenrollment.certificationIsActive">
+                    </div>
+                  </div> -->
+
+                  <div class="form-group row">
+                    <label for="inputcertificationStartDate" class="col-sm-2 col-form-label">Certification Start Date</label>
+                    <div class="col-md-3">
+                      <input type="date" class="form-control" id="inputcertificationStartDate" placeholder="2001-12-13" v-model="recordenrollment.certificationStartDate">
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label for="inputcertificationEndDate" class="col-sm-2 col-form-label">Certification End Date</label>
+                    <div class="col-md-3">
+                      <input type="date" class="form-control" id="inputcertificationEndDate" placeholder="2001-12-13" v-model="recordenrollment.certificationEndDate">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                  <label for="inputcertificationIsActive" class="col-sm-2 col-form-label">Certification IsActive ?</label>
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="inputcertificationIsActive" value="1" name="materialExampleRadios" placeholder="Yes/No" v-model="recordenrollment.certificationIsActive" checked>
+                    <label class="form-check-label" for="materialUnchecked">Active &nbsp </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input type="radio" class="form-check-input" id="inputcertificationInActive" value="0" name="materialExampleRadios" placeholder="Yes/No" v-model="recordenrollment.certificationIsActive">
+                    <label class="form-check-label" for="materialChecked">InActive</label>
+                  </div>
+                  </div>
+
+
+
+                  <div class="form-group row">
+                    <div class="col-md-10">
+                      <button type="submit" class="btn btn-success">Enroll</button>
+                    </div>
+                  </div>
+                </form>
+
+
+        <table class="table table-sm table-hover" id="taskTable">
+          <thead class="thead-dark">
+            <tr>
+
+              <th>Certification Name</th>
+              <th>Member Name</th>
+              <th>Member DOB</th>
+              <th>Certification Status</th>
+              <th>certification StartDate</th>
+              <th>Certification EndDate</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="p in enrollments" @click="handleRowClick(p)">
+              <td>{{ p.certificationName }}</td>
+              <td>{{ p.firstName }} {{p.lastName}}</td>
+              <td>{{ p.dob }}</td>
+              <td>{{ p.certificationIsActive }}</td>
+              <td>{{ p.certificationStartDate }}</td>
+              <td>{{ p.certificationEndDate }}</td>
+              <td> <div class="col-sm-10">
+                <button @click="deleteRecord(p)" class="btn btn-danger">Delete</button>
+              </div> </td>
+            </tr>
+          </tbody>
+        </table>
+
+        </div>
+
+        <div id="enrollmentEditApp">
+          <noscript>This page REQUIRES Javascript</noscript>
+          <form @submit.prevent="handleSubmit()">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Member Name" v-model="enrollments.firstName" readonly>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" placeholder="Certification Name" v-model="enrollments.certificationName" readonly>
+              </div>
+              <div class="form-group col-md-4">
+                <input type="boolean" class="form-control" placeholder="Certification Status" v-model="enrollments.certificationIsActive" >
+              </div>
+              <div class="form-group col-md-4">
+                <input type="date" class="form-control" placeholder="2001-12-13" v-model="enrollments.certificationStartDate" >
+              </div>
+              <div class="form-group col-md-4">
+                <input type="date" class="form-control" placeholder="2001-12-13" v-model="enrollments.certificationStartDate" >
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Edit Enrollment</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        </div>
+        </div>
+        </div>
+
+
+      </main>
+
+      <footer class="row">
+          <p>Oconee County Fire Rescue (OCFR) is a volunteer organization in Oconee County, GA.</p>
+      </footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+<script src="js/displayEnrollment.app.js"></script>
+<script src="js/enrollmentEdit.app.js"></script>
+<script src="js/tablesort.min.js" > </script>
+<script>
+new Tablesort(document.getElementById('taskTable'));
+</script>
+
+
+</body>
+</html>
