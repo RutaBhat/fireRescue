@@ -53,7 +53,7 @@
                 </div>
 
 
-          <table class="table table-sm table-hover table-responsive">
+          <table class="table table-sm table-hover table-responsive" id="taskTable">
             <thead class="thead-dark">
               <tr>
                 <th>Certification Name</th>
@@ -79,7 +79,7 @@
             </tbody>
           </table>
           <br>
-          
+
 
 
           <h4>A report that lists members names by station and radio number, and shows email addresses.</h4>
@@ -111,28 +111,26 @@
           </div>
 
 
-          <table class="table table-sm table-hover table-responsive">
+          <table class="table table-sm table-hover table-responsive" id="taskTable1">
             <thead class="thead-dark">
               <tr>
-                <th>Certification Name</th>
                 <th>Member Name</th>
                 <th>DOB</th>
                 <th>Gender</th>
-                <th>Certification Status</th>
-                <th>certification StartDate</th>
-                <th>Certification EndDate</th>
+                <th>Radio Number</th>
+                <th>Station Number</th>
+                <th>Email</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="p in reportRadio"
               v-if="(filter.radioNumber=='' || filter.radioNumber==p.radioNumber) && (filter.stationNumber=='' || filter.stationNumber==p.stationNumber)">
-                <td>{{ p.certificationName }}</td>
                 <td>{{ p.firstName }} {{p.lastName}}</td>
                 <td>{{ p.dob }}</td>
                 <td>{{ p.gender }}</td>
-                <td>{{ p.certificationIsActive }}</td>
-                <td>{{ p.certificationStartDate }}</td>
-                <td>{{ p.certificationEndDate }}</td>
+                <td>{{ p.radioNumber }}</td>
+                <td>{{ p.stationNumber }}</td>
+                <td>{{ p.email }}</td>
               </tr>
             </tbody>
           </table>
@@ -157,7 +155,14 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="js/displayExpiredReport.app.js"></script>
-
+<script src="js/tablesort.min.js" > </script>
+<script>
+new Tablesort(document.getElementById('taskTable'));
+</script>
+<script src="js/tablesort.min.js" > </script>
+<script>
+new Tablesort(document.getElementById('taskTable1'));
+</script>
 
 </body>
 </html>
